@@ -1,0 +1,82 @@
+<?php
+// file_manager.php -- sirf practice ke liye (DEV only)
+
+// Allowed base paths (absolute)
+$rootPath   = realpath(__DIR__ . '/../'); // project root
+$publicPath = realpath(__DIR__);          // public folder
+
+$allowedBases = [$rootPath, $publicPath];
+
+$file = isset($_GET['file']) ? $_GET['file'] : '';
+
+// Normalize file: prevent leading slashes that break concatenation
+$file = ltrim($file, "/\\");
+
+// Try to resolve the requested path against allowed bases
+$path = null;
+foreach ($allowedBases as $base) {
+    $candidate = realpath($base . DIRECTORY_SEPARATOR . $file);
+    if ($candidate && str_starts_with($candidate, $base)) {
+        $path = $candidate;
+        break;
+    }
+}
+
+// If no file specified, default to first allowed base (browse root)
+if (!$file && !$path) {
+    $path = $rootPath;
+}
+
+// सुरक्षा: valid path होना चाहिए और allowedBases में से कोई एक होना चाहिए
+if (!$path || !isValidPath($path, $allowedBases)) {
+    die("Invalid path!");
+}
+
+// अगर save request aayi hai
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['content'])) {
+    // OPTIONAL: Backup before overwrite (recommended for practice)
+    if (file_exists($path) && is_writable($path)) {
+        copy($path, $path . '.bak.' . date('YmdHis'));
+    }
+    file_put_contents($path, $_POST['content']);
+    echo "<p style='color:green'>File saved successfully!</p>";
+}
+
+// अगर folder है तो list दिखाओ
+if (is_dir($path)) {
+    $displayPath = $file ?: ($path === $rootPath ? '/' : basename($path));
+    echo "<h2>Browsing: " . htmlspecialchars($displayPath) . "</h2><ul>";
+    foreach (scandir($path) as $item) {
+        if ($item === '.' || $item === '..') continue;
+        $itemPath = $file ? ($file . '/' . $item) : $item;
+        echo "<li><a href='?file=" . urlencode($itemPath) . "'>" . htmlspecialchars($item) . "</a></li>";
+    }
+    echo "</ul>";
+} else {
+    // file view + edit
+    $content = @file_get_contents($path);
+    if ($content === false) {
+        echo "<p style='color:red'>Unable to read file.</p>";
+    } else {
+        $content = htmlspecialchars($content);
+        echo "<h2>Editing: " . htmlspecialchars($file ?: basename($path)) . "</h2>";
+        echo "<form method='post'>
+                <textarea name='content' style='width:100%;height:400px;'>$content</textarea><br>
+                <button type='submit'>Save</button>
+              </form>";
+    }
+}
+
+/**
+ * Validate that $path starts with one of allowed base paths
+ */
+function isValidPath($path, $allowedPaths) {
+    if (! $path) return false;
+    foreach ($allowedPaths as $base) {
+        $realBase = realpath($base);
+        if ($realBase && strpos($path, $realBase) === 0) {
+            return true;
+        }
+    }
+    return false;
+}
