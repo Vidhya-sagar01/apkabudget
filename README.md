@@ -1,16 +1,42 @@
-# 💰 ApkaBudget - Financial Management System
+# ✨ Apka budget - Door-to-Door Service Provider Platform
 
-ApkaBudget is a lightweight, efficient Financial Management System built with **Laravel (PHP)**. It is designed to help users seamlessly track their daily income and expenses. By leveraging **AJAX and JSON**, the platform provides a smooth, modern, and no-reload user experience backed by a clean and powerful HTML/CSS admin dashboard.
+Aura is a modern and efficient **Door-to-Door Service Provider** web application. It connects users with local service professionals (like cleaning, repairs, delivery, or maintenance) right at their doorstep. Designed with a seamless user experience, it simplifies service booking, tracking, and management.
 
 ---
 
 ## 🚀 Key Features
 
-* **No-Reload Experience:** Powered by AJAX and JSON for instant data fetching, entries, and UI updates without refreshing the page.
-* **Income & Expense Tracking:** Easy-to-use logging system to categorize cash flows (e.g., Salary, Food, Rent, Entertainment).
-* **Interactive Dashboard:** Visual breakdown of total balance, monthly income, and expense logs.
-* **Category Management:** Custom categories for better financial classification.
-* **History & Filters:** Track and filter past transactions by date, type, or category.
+### 👤 User Features
+* **Service Discovery:** Browse through various home service categories with ease.
+* **On-Demand Booking:** Book a service for immediate assistance or schedule it for later.
+* **Doorstep Tracking:** Real-time updates on the status of your service request.
+* **Booking History:** Keep a log of all past and upcoming service appointments.
+
+### 💼 Provider & Admin Features
+* **Service Management:** Admins can add, update, or remove service categories and pricing.
+* **Order Assignment:** Smooth system to track new incoming requests and assign them to available professionals.
+* **Status Control:** Update booking status from "Accepted" to "In-Progress" and "Completed".
+
+---
+
+## 🛠️ Tech Stack Used
+
+*(Tip: You can update this section based on the exact languages/frameworks you used!)*
+* **Frontend:** HTML5, CSS3, JavaScript (React / Blade Templates)
+* **Backend:** PHP / Node.js
+* **Database:** MySQL / MongoDB
+* **Styling:** Bootstrap / Tailwind CSS
+
+---
+
+## 💻 Getting Started / Installation
+
+Follow these steps to set up the project locally:
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/Vidhya-sagar01/Aura.git](https://github.com/Vidhya-sagar01/Aura.git)
+cd Aura
 
 ---
 
