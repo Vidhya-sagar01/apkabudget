@@ -1,6 +1,6 @@
 # ✨ Apka budget - Door-to-Door Service Provider Platform
 
-Aura is a modern and efficient **Door-to-Door Service Provider** web application. It connects users with local service professionals (like cleaning, repairs, delivery, or maintenance) right at their doorstep. Designed with a seamless user experience, it simplifies service booking, tracking, and management.
+Apka budget is a modern and efficient **Door-to-Door Service Provider** web application. It connects users with local service professionals (like cleaning, repairs, delivery, or maintenance) right at their doorstep. Designed with a seamless user experience, it simplifies service booking, tracking, and management.
 
 ---
 
